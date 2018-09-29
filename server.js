@@ -1,32 +1,18 @@
-const http = require('http')
+const express = require('express')
 const port = 8443
 
-const lidaComRequests = (request, response) => {
-  /*
-  switch (request.url) {
-    case '/':
-      response.end('<h1>Home</h1>')
-      break
-    case '/produtos':
-      response.end('<h1>Lista de produtos</h1>')
-      break
-    default:
-      response.writeHead(404)
-      response.end('Página não encontrada')
-  }
-  */
-  const metodos = []
-  const urlsGet = []
-  urlsGet['/'] = '<h1>Home</h1>'
-  urlsGet['/produtos'] = '<h1>Lista de produtos</h1>'
-  metodos['GET'] = urlsGet
-  if (metodos[request.method][request.url]){
-    response.end(metodos[request.method][request.url])
-  } else {
-    response.writeHead(404)
-    response.end('Página não encontrada')
-  }
+const app = express()
+
+const home = (request, response) => {
+  response.end('<h1>HOME NEW</h1>')
 }
+const produtos = (request, response) => {
+  response.end('<h1>Lista de produtos NEW</h1>')
+}
+
+app.get('/', home)
+app.get('/produtos', produtos)
+
 const retornoSubirOServidor = () => {
   console.log(`
         Servidor subiu na porta ${port}
@@ -34,5 +20,4 @@ const retornoSubirOServidor = () => {
         http://localhost:${port}
     `)
 }
-const server = http.createServer(lidaComRequests)
-server.listen(port, retornoSubirOServidor)
+app.listen(port, retornoSubirOServidor)
