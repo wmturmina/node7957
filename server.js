@@ -13,11 +13,10 @@ const produtos = (request, response) => {
 app.get('/', home)
 app.get('/produtos', produtos)
 
-const retornoSubirOServidor = () => {
+app.listen(port, () => {
   console.log(`
         Servidor subiu na porta ${port}
         Pressione CTRL+C para derrubar
         http://localhost:${port}
     `)
-}
-app.listen(port, retornoSubirOServidor)
+})
