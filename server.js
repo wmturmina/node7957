@@ -15,12 +15,9 @@ const home = (request, response) => {
   response.end('<h1>HOME NEW</h1>')
 }
 const produtos = (request, response) => {
-  response.end(`
-  <h1>Lista de produtos NEW</h1>
-  <ol>
-    ${_.join(_.map(livros, item => `<li>${item}</li>`), '')}
-  </ol>
-  `)
+  response.render('produtos/lista.ejs', {
+    livros: livros
+  })
 }
 
 app.get('/', home)
