@@ -2,11 +2,21 @@ const http = require('http')
 const port = 8443
 
 const lidaComRequests = (request, response) => {
-    console.log('Servidor')
-    response.end('alo alo w brazil')
+  switch (request.url) {
+    case '/':
+      response.end('<h1>Home</h1>')
+      break
+    case '/produtos':
+      response.end('<h1>Lista de produtos</h1>')
+      break
+    default:
+      response.writeHead(404)
+      response.end('Página não encontrada')
+  }
+  response.end('alo alo w brazil')
 }
 const retornoSubirOServidor = () => {
-    console.log(`
+  console.log(`
         Servidor subiu na porta ${port}
         Pressione CTRL+C para derrubar
         http://localhost:${port}
