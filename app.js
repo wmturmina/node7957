@@ -1,9 +1,7 @@
 const express = require('express')
 const app = express()
 
-const rotaDaHome = require('./routes/home')
-const rotaDosProdutos = require('./routes/produtos')
-rotaDaHome(app)
-rotaDosProdutos(app)
+require('./routes/home')(app)
+require('./routes/produtos')(app)
 
 module.exports = app
