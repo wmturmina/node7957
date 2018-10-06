@@ -7,7 +7,7 @@ class ProdutosDAO {
     return new Promise((resolve, reject) => {
       console.log('2 - dentro do new Promise')
       this.connection.query('select * from livros', (error, result) => {
-        if(error){
+        if (error) {
           reject(error)
         }
         console.log('3 - Dentro do Callback do Banco')
@@ -20,7 +20,19 @@ class ProdutosDAO {
     return new Promise((resolve, reject) => {
       console.log('2 - dentro do new Promise')
       this.connection.query(`select * from livros where id = ${id}`, (error, result) => {
-        if(error){
+        if (error) {
+          reject(error)
+        }
+        console.log('3 - Dentro do Callback do Banco')
+        resolve(result)
+      })
+    })
+  }
+  adicionar(produto) {
+    console.log('1 - adicionar()')
+    return new Promise((resolve, reject) => {
+      this.connection.query(`insert into livros set ?`, produto, (error, result) => {
+        if (error) {
           reject(error)
         }
         console.log('3 - Dentro do Callback do Banco')
