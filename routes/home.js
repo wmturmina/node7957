@@ -1,5 +1,5 @@
 const home = (request, response) => {
-  response.render('home.ejs')
+  response.send('Rota da home do sistema')
 }
 
 module.exports = (app) => {
