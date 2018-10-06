@@ -42,7 +42,7 @@ const produtoForm = (request, response) => {
   response.render('produtos/form.ejs')
 }
 
-const produtoPost = (request, response) => {
+const produtoPost = (request, response, next) => {
   const {
     titulo,
     preco,
@@ -74,6 +74,9 @@ const produtoPost = (request, response) => {
     .adicionar(produto)
     .then(() => {
       response.redirect('/produtos')
+    })
+    .catch((erro) => {
+      next(erro)
     })
 }
 
