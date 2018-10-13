@@ -1,0 +1,48 @@
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Casa do Código</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Produtos</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <ul class="collection">
+        <li class="collection-item">Alvin</li>
+        <li class="collection-item">Alvin</li>
+        <li class="collection-item">Alvin</li>
+        <li class="collection-item">Alvin</li>
+    </ul>
+</div>
+
+<style>
+    .collection, li {
+        border-color: #bbbbbb !important;
+    }
+</style>
+
+<script>
+fetch('http://localhost:3000/produtos', {
+    headers: {
+        'Accept': 'application/json'
+    }
+})
+.then((respostaDoServidor) => { 
+    return respostaDoServidor.json()
+})
+.then((respostaEmObjeto) => {
+    const listaDeLivros = respostaEmObjeto.livros.map((livroAtual) => {
+        return `<li class="collection-item">${livroAtual.titulo}</li>`
+    })
+    document.querySelector('.collection').innerHTML = listaDeLivros.join(' ')
+})
+</script>
+<!-- Dar um map no que vier -->
