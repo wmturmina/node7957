@@ -1,0 +1,21 @@
+<h1>Chat iniciado...</h1>
+<ul>
+</ul>
+<form>
+    <input class="chat__message">
+    <button type="submit">Enviar</button>
+</form>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io()
+    socket.on('SERVER_SENDMESSAGE', (mensagem) => {
+        const historico = document.querySelector('ul')
+        historico.innerHTML += `<li>${mensagem}</li>`
+    })
+    document.querySelector('form').addEventListener('submit', (event) => {
+        event.preventDefault()
+        const mensagem = document.querySelector('.chat__message')
+        socket.emit('CLIENT_SENDMESSAGE', mensagem.value)
+        mensagem.value = ''
+    })
+</script>
